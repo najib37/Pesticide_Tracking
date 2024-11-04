@@ -17,9 +17,9 @@ export const Navbar = () => {
         </div>
         <div className="nav-links">
           <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
+          <a href="#">Map</a>
+          <a href="#">Feilds</a>
+          <a href="#">Pesticides</a>
         </div>
         <div className="notification-bell" >
           <img src={bellIcon} alt='notification bell icon'/>
