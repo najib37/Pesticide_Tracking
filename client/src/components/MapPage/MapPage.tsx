@@ -7,15 +7,33 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import 'leaflet/dist/leaflet.css'
 import { useForm } from 'react-hook-form';
 import useSWR from 'swr';
+import { MarkerType } from '../../types/MarkerType';
+import { fetchAllMarkers, postMarker } from '../../services/Feilds/feild_marker_fetcher';
+import useSWRMutation from 'swr/mutation';
 
 
-const MarkerPopup = (props: { setPopUp: any, marker: any }) => {
-  const { setPopUp, marker } = props
+const MarkerPopup = (props: { setPopUp: Function, newMarker: any}) => {
+  const { setPopUp, newMarker } = props
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit: any = (data: {name: string}) => {
+  const { trigger: changePhotoTrigger } = useSWRMutation('marker', postMarker);
+
+  if (newMarker === null) {
+    setPopUp(false)
+    return;
+  }
+  const onSubmit: any = (data: { name: string }) => {
     console.log(data);
+    console.log(newMarker);
+    const marker: MarkerType = {
+      id: newMarker.id,
+      name: data.name,
+      lat: newMarker.position.lat,
+      lng: newMarker.position.lng,
+      desc: "dont have the desc yet",
+    }
     console.log(marker);
+    changePhotoTrigger(marker);
     setPopUp(false);
   };
 
@@ -36,18 +54,17 @@ const MarkerPopup = (props: { setPopUp: any, marker: any }) => {
   );
 }
 
-const MapEvents = (props: { setPopUp: any, markers: any[], setMarkers: any }) => {
-
-  const { setPopUp, markers, setMarkers } = props
+const MapEvents = (props: { setPopUp: Function, markers: MarkerType[], setNewMarker: Function }) => {
+  const { setPopUp, setNewMarker, markers } = props
 
   const map = useMapEvents({
     click: (e) => {
       const newMarker = {
         position: e.latlng,
         key: `marker-${markers.length}`,
-        popup: `Marker ${markers.length + 1}`,
+        popup: "",
       };
-      setMarkers([...markers, newMarker]);
+      setNewMarker(newMarker)
       setPopUp(true)
     },
   });
@@ -56,11 +73,12 @@ const MapEvents = (props: { setPopUp: any, markers: any[], setMarkers: any }) =>
 };
 
 export const MapPage = () => {
-  const [isMounted, setIsMounted] = useState(false)
-  const [newMarkers, setNewMarkers] = useState([]);
-  const [popUp, setPopUp] = useState(false)
+  const [isMounted, setIsMounted]: [boolean, Function] = useState(false)
+  const [popUp, setPopUp]: [boolean, Function] = useState(false)
+  const [newMarker, setNewMarker]: [MarkerType | null, Function] = useState(null)
 
-  // const {} = useSWR()
+  const { data: markers, error, isLoading } = useSWR('marker', fetchAllMarkers)
+
 
   useEffect(() => {
     setIsMounted(true)
@@ -68,6 +86,14 @@ export const MapPage = () => {
 
   if (!isMounted) {
     return null
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error</div>
   }
 
   return (
@@ -85,14 +111,14 @@ export const MapPage = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {newMarkers.map((marker: any) => (
-          <Marker key={marker.key} position={marker.position}>
-            <Popup>{marker.popup}</Popup>
+        {markers.map((marker: MarkerType) => (
+          <Marker key={marker.id} position={{ lat: marker.lat, lng: marker.lng }}>
+            <Popup>{marker.name}</Popup>
           </Marker>
         ))}
-        <MapEvents setPopUp={setPopUp} markers={newMarkers} setMarkers={setNewMarkers} />
+        <MapEvents setPopUp={setPopUp} markers={markers} setNewMarker={setNewMarker} />
       </MapContainer>
-      {popUp && <MarkerPopup setPopUp={setPopUp} marker={newMarkers[newMarkers.length - 1]} />}
+      {popUp && <MarkerPopup setPopUp={setPopUp} newMarker={newMarker} />}
     </div>
   )
 }
