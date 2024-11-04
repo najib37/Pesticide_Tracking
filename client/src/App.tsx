@@ -1,8 +1,9 @@
-import './App.css'
+import { Navbar } from './components/navbar/NavBar.tsx'
 
 function App() {
   return (
     <>
+      <Navbar />
     </>
   )
 }
