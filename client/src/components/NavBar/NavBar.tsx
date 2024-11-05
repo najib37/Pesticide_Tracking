@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import "./NavBar.css"
 import bellIcon from '../../assets/bell-icon.svg'
+import Logo from '../../assets/logo.png'
 
 export const Navbar = (props: { navRoute: string, setNavLink: Function }) => {
   const [selected, setSelected] = useState('/');
@@ -17,7 +18,7 @@ export const Navbar = (props: { navRoute: string, setNavLink: Function }) => {
     <>
       <nav>
         <div className="logo">
-          <img src='./src/assets/logo.png' />
+          <img src={Logo} />
         </div>
         <div
           className="nav-links"

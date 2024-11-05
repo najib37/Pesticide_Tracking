@@ -12,7 +12,7 @@ function App() {
   const routes = {
     '/': <HomePage />,
     '/map': <MapPage />,
-    '/fields': <FeildPage />,
+    '/feilds': <FeildPage />,
     '/pesticides': <PestcidePage />
   }
 

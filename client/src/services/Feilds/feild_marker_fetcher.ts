@@ -1,6 +1,6 @@
 import axios from "axios";
 import { MarkerType } from "../../types/MarkerType";
-const apiUrl: string = "http://localhost:9090/api/v1/";
+// const apiUrl: string = "http://localhost:9090/api/v1/";
 
 
 export const fetchAllMarkers = async () => {
