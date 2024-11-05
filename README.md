@@ -1,5 +1,5 @@
 # Pesticide Usage Tracker
-(this project is made with its design in 2 days so it might be rough arounf the edges)
+(This project was completed in 2 days, so some aspects may require further polish.)
 ## [FIGMA DESIGN](https://www.figma.com/design/gz56rKNCCvZ4YerkSFl4y4/Pesticide-tracking?node-id=0-1&t=k8xPoounnhJJDkuc-1)
 ## Overview
 This project is a React web application designed to track pesticide usage on fields using a map interface. Users can create markers for each location on the map, and the data is stored in the backend using Django. The application also includes pages to view all tracked fields and the pesticides being used.
