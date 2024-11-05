@@ -1,0 +1,40 @@
+
+.pesticide-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.pesticide-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  max-width: 400px;
+  width: 15wv;
+  height: 50vh;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pesticide-card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.pesticide-card h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.pesticide-card p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--primary-grey);
+}
