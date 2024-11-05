@@ -1,22 +1,24 @@
+import axios from "axios";
+import { MarkerType } from "../../types/MarkerType";
+const apiUrl: string = "http://localhost:9090/api/v1/";
 
-const apiUrl: string = "http://localhost:8080/";
 
-type MarkerDataType = any; // TODO: Define the type of the marker data
-
-export const fetchAllFeildMarkers = async () => {
-  const response = await fetch(apiUrl + "/marker");
-  const data = await response.json();
+export const fetchAllMarkers = async () => {
+  const response = await axios.get("http://localhost:9090/api/v1/marker");
+  const data = await response.data;
   return data;
 }
 
-export const postFeildMarkers = async (markerData: MarkerDataType) => {
-  const response = await fetch(apiUrl + "/marker", {
-    method: 'POST',
+export const postMarker = async (
+  url: string,
+  { arg }: { arg: MarkerType }
+) => {
+  const response = await axios.post("http://localhost:9090/api/v1/marker/", arg, {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(markerData)
   });
-  const data = await response.json();
-  return data;
+  console.log("________________________________")
+  console.log(response);
+  console.log("________________________________")
 }

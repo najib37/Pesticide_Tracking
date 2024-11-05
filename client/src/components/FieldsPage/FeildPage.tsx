@@ -1,14 +1,15 @@
 import './FeildPage.css';
 import FeildIcon from '../../assets/feild-icon.svg';
+import { FeildType } from '../../types/PestType';
 
 export const FeildPage = () => {
 
-  const feildData = {
+  const feildData : FeildType = {
     "name": "Field",
-    "description": "This is a feild",
+    "desc": "This is a feild",
   }
 
-  const FeildCard =(props: { pest }) => { 
+  const FeildCard =(props: { pest: FeildType }) => { 
     const { pest: feild } = props;
 
     return (

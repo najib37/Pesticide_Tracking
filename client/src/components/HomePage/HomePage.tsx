@@ -4,14 +4,7 @@ import FastIcon from "../../assets/icons/fast.svg";
 import InstantIcon from "../../assets/icons/instant.svg";
 import IntuitiveIcon from "../../assets/icons/intuitive.svg";
 import CustomIcon from "../../assets/icons/custom.svg";
-
-
-type IconDescType = { // TODO: move to a separate file Types.ts
-  icon: string,
-  name: string,
-  desc: string
-}
-
+import { IconDescType } from "../../types/IconsDescType";
 
 export const HomePage = () => {
 
