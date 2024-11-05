@@ -2,6 +2,9 @@ import './MapPage.css';
 import 'leaflet/dist/leaflet.css';
 import './FormStyle.css';
 
+import IconUrl from 'leaflet/dist/images/marker-icon.png';
+import MarkerShadow from 'leaflet/dist/images/marker-shadow.png';
+
 import { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -10,9 +13,20 @@ import useSWR from 'swr';
 import { MarkerType } from '../../types/MarkerType';
 import { fetchAllMarkers, postMarker } from '../../services/Feilds/feild_marker_fetcher';
 import useSWRMutation from 'swr/mutation';
+import { Icon } from 'leaflet';
 
 
-const MarkerPopup = (props: { setPopUp: Function, newMarker: any}) => {
+const defaultIcon = new Icon({
+  iconUrl: IconUrl,
+  // iconRetinaUrl: IconRetinaUrl,
+  shadowUrl: MarkerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+})
+
+const MarkerPopup = (props: { setPopUp: Function, newMarker: any }) => {
   const { setPopUp, newMarker } = props
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -23,8 +37,6 @@ const MarkerPopup = (props: { setPopUp: Function, newMarker: any}) => {
     return;
   }
   const onSubmit: any = (data: { name: string }) => {
-    console.log(data);
-    console.log(newMarker);
     const marker: MarkerType = {
       id: newMarker.id,
       name: data.name,
@@ -112,7 +124,7 @@ export const MapPage = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         {markers.map((marker: MarkerType) => (
-          <Marker key={marker.id} position={{ lat: marker.lat, lng: marker.lng }}>
+          <Marker key={marker.id} icon={defaultIcon} position={{ lat: marker.lat, lng: marker.lng }}>
             <Popup>{marker.name}</Popup>
           </Marker>
         ))}

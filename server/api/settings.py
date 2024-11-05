@@ -57,10 +57,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'api.urls'
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
-'http://localhost:5173',
+'http://localhost:8080',
 )
 
 TEMPLATES = [

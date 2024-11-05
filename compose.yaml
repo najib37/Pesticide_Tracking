@@ -1,0 +1,49 @@
+
+networks: 
+  internalNet:
+    name: internalNet
+services:
+  client: 
+    container_name: client
+    image: node:20-alpine
+    restart: "on-failure"
+    ports: 
+      - target: 8080
+        published: 8080
+    networks: 
+      - internalNet
+    working_dir: /home/client
+    volumes:
+      - ./client:/home/client
+    entrypoint: sh -c "npm install && npm run build && npm run preview"
+
+
+  server: 
+    container_name: server
+    image: python:3.11-alpine
+    restart: "on-failure"
+    ports: 
+      - target: 9090
+        published: 9090
+    networks: 
+      - internalNet
+    working_dir: /home/server
+    volumes:
+      - ./server:/home/server
+    entrypoint: sh -c "pip install -r requirements.txt --root-user-action=ignore && python manage.py runserver server:9090"
+    tty: true
+
+# services:
+#   postgres:
+#     image: postgres:16-bookworm
+#     restart: "on-failure"
+#     container_name: postgres
+#     env_file: .env
+#     networks: 
+#       - internalNet
+#     ports: 
+#       - target: 5432
+#         published: 5432
+#     volumes:
+#       - database:/var/lib/postgresql/data
+#     shm_size: 128mb
