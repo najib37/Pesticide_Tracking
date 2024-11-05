@@ -29,5 +29,9 @@ nav {
 
 .notification-bell {
   padding: 0 2rem;
-  size: 45px;
+  size: 30px;
+}
+
+.nav-links a:active {
+    color: var(--primary-green);
 }
