@@ -4,15 +4,14 @@
   align-items: start;
   flex-direction: column;
   height: 100vh;
+  padding: 20px 20px
 }
 
 .home-info-card {
   background-color: #f0f0f0;
   border-radius: 15px;
-  width: 98%;
-  height: 40%;
-  margin: 20px;
-  /* padding: 20px; */
+  width: 100%;
+  height: fit-content;
   text-align: center;
   display: flex;
   justify-content: space-evenly;
@@ -23,6 +22,7 @@
   background-position: center 50%;
   background-repeat: no-repeat;
   position: relative;
+  padding: 80px 20px
 }
 
 .home-info-card::before {
@@ -39,25 +39,30 @@
   z-index: 1;
 }
 
-.info-card-title {
+.home-info-card h1 {
   color: white;
   font-weight: 600;
   font-size: 3rem;
+  width: 100%;
+  /* height: 30%; */
 }
 
-.info-card-subtitle {
+.home-info-card h2 {
   color: white;
-  width: 50%;
-  align-self: center;
+  width: 100%;
+  max-width: 50vw;
   font-weight: 300;
   font-size: 1.5rem;
+  margin-bottom: 25px;
 }
 
-.info-card-button {
+.home-info-card button {
   background-color: var(--primary-yellow);
   color: white;
-  width: 20rem;
-  height: 3rem;
+  width: 40%;
+  max-width: 300px;
+  min-width: fit-content;
+  height: 50px;
   border-radius: 10px;
   border-style: none;
   font-size: 2rem;
@@ -65,24 +70,22 @@
 }
 
 .home-details-card {
-  display: flex;
-  justify-content: center;;
-  align-items: center;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
   background-color: white;
   border-radius: 15px;
-  width: 98%;
-  height: fit-content;
-  margin: 20px;
+  width: 100%;
+  margin-top: 20px;
   text-align: center;
+  padding: 40px;
 }
 
 .details-card-info-box {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: start;
   flex-direction: column;
-  width: 50%;
   height: 100%;
 }
 
@@ -90,8 +93,8 @@
   color: var(--primary-green);
   font-size: 2rem;
   font-weight: 600;
+  width: 100%;
   text-align: start;
-  margin: 0 40px;
 }
 
 .details-card-info-box h2 {
@@ -99,11 +102,9 @@
   font-size: 1rem;
   font-weight: 500;
   text-align: start;
-  margin: 0 40px;
 }
 
 .details-card-info-box p {
-  margin: 0 40px;
   color: var(--primary-grey);
   font-size: 1rem;
   font-weight: 500;
@@ -117,7 +118,7 @@
 
 .details-card-icons-box {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: start;
   flex-direction: column;
   width: 50%;
@@ -125,14 +126,10 @@
 
 .home-details-icons-box {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
   gap: 2rem;
-  padding: 10px 0 0 0;
-  width: 40%;
-  height: 80%;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  height: 70%;
 }
 
 

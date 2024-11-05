@@ -50,10 +50,10 @@ export const HomePage = () => {
       <div className="home-container">
 
         <div className="home-info-card">
-          <h1 className="info-card-title">Responsible Farming, Sustainable Future</h1>
-          <h2 className="info-card-subtitle">Streamline your pesticide management with real-time tracking,
+          <h1>Responsible Farming, Sustainable Future</h1>
+          <h2>Streamline your pesticide management with real-time tracking,
             compliance  monitoring, and intelligent reporting</h2>
-          <button className="info-card-button">Get Started</button>
+          <button>Get Started</button>
         </div>
 
         <div className="home-details-card">
