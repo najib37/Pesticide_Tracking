@@ -1,5 +1,9 @@
 # Pesticide Usage Tracker
-(This project was completed in 2 days, so some aspects may require further polish.)
+
+## Project Overview
+This project originated as a coding challenge for a job application, completed over a 2-day period. The original submission can be found in the submission branch.
+After completing the challenge, I found the concept compelling and decided to expand it into a full Flutter application.
+
 ## [FIGMA DESIGN](https://www.figma.com/design/gz56rKNCCvZ4YerkSFl4y4/Pesticide-tracking?node-id=0-1&t=k8xPoounnhJJDkuc-1)
 ## Overview
 This project is a React web application designed to track pesticide usage on fields using a map interface. Users can create markers for each location on the map, and the data is stored in the backend using Django. The application also includes pages to view all tracked fields and the pesticides being used.
